@@ -1,4 +1,4 @@
-This repository provides an automated cognitive presence labeling + CP-Bench metric pipeline for the StudyChat dataset.
+This repository provides an automated cognitive presence labeling + CP-Bench metric pipeline.
 
 Pipeline:
 1. Load dataset (studychat_load.py)
