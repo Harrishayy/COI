@@ -32,6 +32,7 @@ def save_artifacts():
 def main():
     """Save all reproducibility artifacts."""
     save_artifacts()
+    return True
 
 
 if __name__ == "__main__":

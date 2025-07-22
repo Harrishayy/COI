@@ -1,0 +1,93 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Cognitive Presence Evaluation Schema",
+  "description": "Uniform schema for chat discourse objects in cognitive presence analysis",
+  "type": "object",
+  "properties": {
+    "conversations": {
+      "type": "array",
+      "description": "Array of conversation objects",
+      "items": {
+        "type": "object",
+        "properties": {
+          "conversation_id": {
+            "type": "string",
+            "description": "Unique identifier for the conversation"
+          },
+          "metadata": {
+            "type": "object",
+            "properties": {
+              "course_id": {"type": "string"},
+              "created_timestamp": {"type": "number"},
+              "closed_timestamp": {"type": "number"},
+              "total_messages": {"type": "number"},
+              "participants": {
+                "type": "array",
+                "items": {"type": "string"}
+              }
+            }
+          },
+          "discourse": {
+            "type": "array",
+            "description": "Array of chat discourse objects for cognitive presence analysis",
+            "items": {
+              "type": "object",
+              "properties": {
+                "message_id": {
+                  "type": "string",
+                  "description": "Unique identifier for the message"
+                },
+                "sequence_number": {
+                  "type": "number",
+                  "description": "Order of message in conversation (0-indexed)"
+                },
+                "speaker_id": {
+                  "type": "string",
+                  "description": "Identifier for the speaker (user_id, role, etc.)"
+                },
+                "speaker_role": {
+                  "type": "string",
+                  "enum": ["student", "ta", "instructor", "system", "user", "assistant"],
+                  "description": "Role of the speaker in the conversation"
+                },
+                "content": {
+                  "type": "string",
+                  "description": "The actual text content of the message"
+                },
+                "timestamp": {
+                  "type": "number",
+                  "description": "Unix timestamp of when message was created"
+                },
+                "cognitive_presence": {
+                  "type": "object",
+                  "description": "Cognitive presence analysis annotations",
+                  "properties": {
+                    "phase": {
+                      "type": "string",
+                      "enum": ["triggering_event", "exploration", "integration", "resolution"],
+                      "description": "Cognitive presence phase classification"
+                    },
+                    "indicators": {
+                      "type": "array",
+                      "items": {"type": "string"},
+                      "description": "Specific cognitive presence indicators found in the message"
+                    },
+                    "confidence": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1,
+                      "description": "Confidence score for the classification"
+                    }
+                  }
+                }
+              },
+              "required": ["message_id", "sequence_number", "speaker_id", "speaker_role", "content", "timestamp"]
+            }
+          }
+        },
+        "required": ["conversation_id", "discourse"]
+      }
+    }
+  },
+  "required": ["conversations"]
+} 
