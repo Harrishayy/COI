@@ -111,6 +111,7 @@ def main():
     resolution_curve(auto_final)
     
     print("All visualizations completed!")
+    return True
 
 
 if __name__ == "__main__":
