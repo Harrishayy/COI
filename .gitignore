@@ -75,4 +75,4 @@ codebook_min.json
 
 # Temporary files
 *.tmp
-*.temp 
+*.temp filtered_dataset_uniform.json
